@@ -85,37 +85,11 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <li class="messages-menu">
-            <a href="">
-              <i class="glyphicon glyphicon-sort" data-toggle="tooltip" data-placement="buttom" title="Peminjaman"></i>
-            </a>
-          </li>
-          <li class="messages-menu">
-            <a href="">
-              <i class="glyphicon glyphicon-print" data-toggle="tooltip" data-placement="buttom" title="Laporan"></i>
-            </a>
-          </li>
-          <!-- <li class="messages-menu"> 
-            <a href="#">
-              <i class="glyphicon glyphicon-globe"></i>
-            </a>
-          </li>
-          -->
-
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-               <i class="glyphicon glyphicon-globe" data-toggle="tooltip" data-placement="buttom" title="Notifikasi"></i>
-               <span class="label label-warning"></span>
-            </a>
-          </li>
-
-          
           <!-- Messages: style can be found in dropdown.less-->
-            <li><a href="">Logout</a></li>
+            <li><a href=""><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
           <!-- User Account: style can be found in dropdown.less -->
         
           <!-- Control Sidebar Toggle Button -->
-
         </ul>
       </div>
     </nav>
@@ -150,10 +124,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i>Data Suku Cadang</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Data Supplier</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Data Pegawai</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Data User</a></li>
+            <li><a href="<?php echo base_url('Sukucadang'); ?>"><i class="fa fa-circle-o"></i>Data Suku Cadang</a></li>
+            <li><a href="<?php echo base_url('Supplier'); ?>"><i class="fa fa-circle-o"></i>Data Supplier</a></li>
+            <li><a href="<?php echo base_url('Pegawai'); ?>"><i class="fa fa-circle-o"></i>Data Pegawai</a></li>
+            <li><a href="<?php echo base_url('Pengguna'); ?>"><i class="fa fa-circle-o"></i>Data Pengguna</a></li>
           </ul>
         </li>
       <li>
@@ -180,7 +154,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('LapSukuCadang'); ?>"><i class="fa fa-circle-o"></i>Laporan Suku Cadang</a></li>
+            <li><a href="<?php echo base_url('LapSukucadang'); ?>"><i class="fa fa-circle-o"></i>Laporan Suku Cadang</a></li>
             <li><a href="<?php echo base_url('LapLayanan'); ?>"><i class="fa fa-circle-o"></i>Laporan Layanan</a></li>
             <li><a href="<?php echo base_url('LapPenjualan'); ?>"><i class="fa fa-circle-o"></i>Laporan Penjualan</a></li>
             <li><a href="<?php echo base_url('LapPembelian'); ?>"><i class="fa fa-circle-o"></i>Laporan Pembelian</a></li>
