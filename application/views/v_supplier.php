@@ -15,7 +15,7 @@
         <div class="box-header with-border">
           <h1 class="box-title">Form Supplier</h1>
         </div>
-        <form class='form-horizontal' action='' method='post'>
+        <form class='form-horizontal' action='<?php echo base_url('Supplier/tambah'); ?>' method='post'>
           <div class='box-body'>
             <div class='form-group'>
               <label class='col-sm-2 control-label'>Nama supplier</label>
@@ -49,18 +49,36 @@
                 <thead>
                   <tr>
                     <th>No</th>
+                    <th>ID Supplier</th>
                     <th>Nama supplier</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
+
+                <?php 
+                  $i = 1;
+                  foreach ($data as $r) {
+                ?>
+
                   <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo $i ?></td>
+                    <td><?php echo $r['IDSUPPLIER'] ?></td>
+                    <td><?php echo $r['NAMASUPPLIER'] ?></td>
+                    <td><?php echo $r['ALAMATSUPPLIER'] ?></td>
+                    <td><a 
+                          href="javascript:;"
+                          data-id="<?php echo $r['IDSUPPLIER']; ?>"
+                          data-nama="<?php echo $r['NAMASUPPLIER']; ?>"
+                          data-alamat="<?php echo $r['ALAMATSUPPLIER']; ?>"
+                          data-toggle="modal" data-target="#edit-data">
+                          <button  data-toggle="modal" data-target="#ubah-data" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Ubah</button>
+                      </a></td>
                   </tr>
+
+                  <?php $i++; } ?>
+
                 </tbody>
               </table>
             </div>
@@ -72,3 +90,55 @@
 </div>
 </div>
   <!-- /.content-wrapper -->
+
+ <!-- Modal Ubah -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Ubah Data Supplier</h4>
+            </div>
+            <form class="form-horizontal" action="<?php echo base_url('Supplier/ubah') ?>" method="post" enctype="multipart/form-data" role="form">
+              <div class="modal-body">
+                      <div class="form-group">
+                          <label class="col-lg-2 col-sm-2 control-label">Nama Supplier</label>
+                          <div class="col-lg-10">
+                              <input type="hidden" id="IDSUPPLIER" name="IDSUPPLIER">
+                              <input type="text" class="form-control" required="" id="NAMASUPPLIER" name="NAMASUPPLIER" placeholder="Nama Supplier">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="col-lg-2 col-sm-2 control-label">Alamat Supplier</label>
+                          <div class="col-lg-10">
+                              <input type="text" class="form-control" required="" id="ALAMATSUPPLIER" name="ALAMATSUPPLIER" placeholder="Alamat Supplier">
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="modal-footer">
+                      <button class="btn btn-info" type="submit"><i class="glyphicon glyphicon-pencil"></i> Ubah&nbsp;</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Batal</button>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!-- END Modal Ubah -->
+
+<script>
+    $(document).ready(function() {
+        // Untuk sunting
+        $('#edit-data').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal  = $(this)
+
+            // Isi nilai pada field
+            modal.find('#IDSUPPLIER').attr("value",div.data('id'));
+            modal.find('#NAMASUPPLIER').attr("value",div.data('nama'));
+            modal.find('#ALAMATSUPPLIER').attr("value",div.data('alamat'));
+        });
+    });
+</script>

@@ -11,7 +11,7 @@
 
     <!-- Main content -->
     <section class="content">
-      <form class='form-horizontal' action='' method='post'>
+      <form class='form-horizontal' action='<?php echo base_url('Layanan/tambah'); ?>' method='post'>
         <div class='box box-default'>
           <div class="box-header with-border">
             <h1 class="box-title">Data Pelanggan</h1>
