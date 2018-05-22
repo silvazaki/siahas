@@ -15,7 +15,7 @@
         <div class="box-header with-border">
           <h1 class="box-title">Form Pegawai</h1>
         </div>
-        <form class='form-horizontal' action='' method='post'>
+        <form class='form-horizontal' action='<?php echo base_url('Pegawai/tambah'); ?>' method='post'>
           <div class='box-body'>
             <div class='form-group'>
               <label class='col-sm-2 control-label'>ID Pegawai</label>
