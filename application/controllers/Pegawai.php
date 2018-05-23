@@ -24,26 +24,59 @@ class Pegawai extends CI_Controller
 
 	public function tambah(){
 		// Data Suku Pegawai 
-		$id_peg = $this -> input -> post('id_peg');
-		$nama_peg = $this -> input -> post('nama_peg');
-		$alamat_peg = $this -> input -> post('alamat_peg');
-		$email = $this -> input -> post('email');
-		$jabatan = $this -> input -> post('jabatan');
-		$subjabatan = $this -> input -> post('subjabatan');
-		$dokumen_peg = $this -> input -> post('dokumen_peg');
+		$IDPEG = $this -> input -> post('id_peg');
+		$NAMAPEG = $this -> input -> post('nama_peg');
+		$ALAMATPEG = $this -> input -> post('alamat_peg');
+		$NOTLP = $this -> input -> post('no_telp');
+		$EMAIL = $this -> input -> post('email');
+		$JABATANPEG = $this -> input -> post('jabatan');
+		$SUBJABATANPEG = $this -> input -> post('subjabatan');
+		$DOKUMENPEG = $this -> input -> post('dokumen_peg');
+
+		$data = $this->m_pegawai->GetAll();
+		$i = count($data);
+		$IDPENGGUNA = "PG".$i;
 		
-		$dataPelanggan = array(
-			'id_peg' => $id_peg,
-			'nama_peg' => $nama_peg,
-			'alamat_peg' => $alamat_peg,
-			'nama_peg' => $nama_peg,
-			'email' => $email,
-			'jabatan' => $jabatan,
-			'subjabatan' => $subjabatan,
-			'dokumen_peg' => $dokumen_peg
+		$dataPegawai = array(
+			'IDPEG' => $IDPEG,
+			'IDPENGGUNA' => $IDPENGGUNA,
+			'NAMAPEG' => $NAMAPEG,
+			'ALAMATPEG' => $ALAMATPEG,
+			'NOTLP' => $NOTLP,
+			'EMAIL' => $EMAIL,
+			'JABATANPEG' => $JABATANPEG,
+			'SUBJABATANPEG' => $SUBJABATANPEG,
+			'DOKUMENPEG' => $DOKUMENPEG
 			);
 
-		// $result = $this -> m_gedung -> insertGedung($data);
+		$result = $this -> m_pegawai -> insert($dataPegawai);
+
+		redirect('Pegawai');	
+	}
+
+	public function ubah(){
+		// Data Pegawai 
+		$IDPEG = $this -> input -> post('IDPEG');
+
+		$NAMAPEG = $this -> input -> post('NAMAPEG');
+		$ALAMATPEG = $this -> input -> post('ALAMATPEG');
+		$NOTLP = $this -> input -> post('NOTLP');
+		$EMAIL = $this -> input -> post('EMAIL');
+		// $JABATANPEG = $this -> input -> post('jabatan');
+		// $SUBJABATANPEG = $this -> input -> post('subjabatan');
+		$DOKUMENPEG = $this -> input -> post('DOKUMENPEG');
+		
+		$dataPegawai = array(
+			'NAMAPEG' => $NAMAPEG,
+			'ALAMATPEG' => $ALAMATPEG,
+			'NOTLP' => $NOTLP,
+			'EMAIL' => $EMAIL,
+			'DOKUMENPEG' => $DOKUMENPEG
+			);
+
+		$result = $this -> m_pegawai -> update($IDPEG, $dataPegawai);
+
+		redirect('Pegawai');	
 	}
 
 }

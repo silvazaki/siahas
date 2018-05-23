@@ -38,7 +38,7 @@
             <div class='form-group'>
               <label class='col-sm-2 control-label'>No Telp</label>
               <div class='col-md-2'>
-                <input type='text' name='tipe_kendaraan' id='tipe_kendaraan' class='form-control' required='true' placeholder='Masukkan no. telp'>
+                <input type='text' name='no_telpon' id='no_telpon' class='form-control' required='true' placeholder='Masukkan no. telp'>
               </div>
             </div>
           </div>
@@ -118,7 +118,7 @@
             <div class='form-group'>
               <label class='col-sm-2 control-label'>Pegawai</label>
               <div class='col-md-4'>
-                <input type='text' name='nama_peg' id='nama_peg' class='form-control' required='true'>
+                <input type='text' name='nama_peg' id='nama_peg' class='form-control' required='true' value="IDPeg01" readonly="">
               </div>
             </div>
             <div class='form-group'>
