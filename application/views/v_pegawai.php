@@ -105,18 +105,39 @@
                   </tr>
                 </thead>
                 <tbody>
+
+                <?php 
+                  $i = 1;
+                  foreach ($data as $r) {
+                ?>
+
                   <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                  <td><?php echo $i ?></td>
+                  <td><?php echo $r['IDPEG'] ?></td>
+                  <td><?php echo $r['NAMAPEG'] ?></td>
+                  <td><?php echo $r['ALAMATPEG'] ?></td>
+                  <td><?php echo $r['NOTLP'] ?></td>
+                  <td><?php echo $r['EMAIL'] ?></td>
+                  <td><?php echo $r['JABATANPEG'] ?></td>
+                  <td><?php echo $r['SUBJABATANPEG'] ?></td>
+                  <td><?php echo $r['DOKUMENPEG'] ?></td>
+                  <td><a 
+                          href="javascript:;"
+                          data-id="<?php echo $r['IDPEG']; ?>"
+                          data-nama="<?php echo $r['NAMAPEG']; ?>"
+                          data-alamat="<?php echo $r['ALAMATPEG']; ?>"
+                          data-notlp="<?php echo $r['NOTLP']; ?>"
+                          data-email="<?php echo $r['EMAIL']; ?>"
+                          data-jabatan="<?php echo $r['JABATANPEG']; ?>"
+                          data-subjabatan="<?php echo $r['SUBJABATANPEG']; ?>"
+                          data-dokumen="<?php echo $r['DOKUMENPEG']; ?>"
+                          data-toggle="modal" data-target="#edit-data">
+                          <button  data-toggle="modal" data-target="#ubah-data" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Ubah</button>
+                      </a></td>
                   </tr>
+
+                  <?php $i++; } ?>
+
                 </tbody>
               </table>
             </div>
@@ -128,3 +149,81 @@
 </div>
 </div>
   <!-- /.content-wrapper -->
+
+    <!-- Modal Ubah -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="edit-data" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Ubah Data Pegawai</h4>
+            </div>
+            <form class="form-horizontal" action="<?php echo base_url('Pegawai/ubah') ?>" method="post" enctype="multipart/form-data" role="form">
+              <div class="modal-body">
+                      <div class="form-group">
+                          <label class="col-lg-2 col-sm-2 control-label">Nama Pegawai</label>
+                          <div class="col-lg-10">
+                              <input type="hidden" id="IDPEG" name="IDPEG">
+                              <input type="text" class="form-control" required="" id="NAMAPEG" name="NAMAPEG" placeholder="Nama Suku Cadang">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="col-lg-2 col-sm-2 control-label">Alamat Pegawai</label>
+                          <div class="col-lg-10">
+                              <input type="text" class="form-control" required="" id="ALAMATPEG" name="ALAMATPEG" placeholder="Nama Suku Cadang">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="col-lg-2 col-sm-2 control-label">No Telpon</label>
+                          <div class="col-lg-10">
+                              <input type="text" class="form-control" required="" id="NOTLP" name="NOTLP" placeholder="Nama Suku Cadang">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="col-lg-2 col-sm-2 control-label">Email</label>
+                          <div class="col-lg-10">
+                              <input type="text" class="form-control" required="" id="EMAIL" name="EMAIL" placeholder="Nama Suku Cadang">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="col-lg-2 col-sm-2 control-label">Dokumen</label>
+                          <div class="col-lg-10">
+                              <input type="text" class="form-control" required="" id="DOKUMENPEG" name="DOKUMENPEG" placeholder="Nama Suku Cadang">
+                          </div>
+                      </div>
+                      
+                  </div>
+                  <div class="modal-footer">
+                      <button class="btn btn-info" type="submit"><i class="glyphicon glyphicon-pencil"></i> Ubah&nbsp;</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Batal</button>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!-- END Modal Ubah -->
+
+<script>
+    $(document).ready(function() {
+        // Untuk sunting
+        $('#edit-data').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+            var modal  = $(this)
+
+            // Isi nilai pada field
+            modal.find('#IDPEG').attr("value",div.data('id'));
+            modal.find('#NAMAPEG').attr("value",div.data('nama'));
+            modal.find('#ALAMATPEG').attr("value",div.data('alamat'));
+            modal.find('#NOTLP').attr("value",div.data('notlp'));
+            modal.find('#EMAIL').attr("value",div.data('email'));
+            modal.find('#JABATANPEG').attr("value",div.data('jabatan'));
+            modal.find('#SUBJABATANPEG').attr("value",div.data('subjabatan'));
+            modal.find('#DOKUMENPEG').attr("value",div.data('dokumen'));
+        });
+    });
+</script>

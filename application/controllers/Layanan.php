@@ -10,7 +10,7 @@ class Layanan extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		//$this->load->model('m_aplikasi2');
+		$this->load->model('m_layanan');
 	}
 
 	public function index()
@@ -25,17 +25,26 @@ class Layanan extends CI_Controller
 		$nama_plg = $this -> input -> post('nama_plg');
 		$alamat_plg = $this -> input -> post('alamat_plg');
 		$daerah_plg = $this -> input -> post('daerah_plg');
-		$tipe_kendaraan = $this -> input -> post('tipe_kendaraan');
+		$no_telpon = $this -> input -> post('no_telpon');
+
+		$data = $this->m_layanan->GetAllPelanggan();
+		$max = count($data);
+
+		$id_pelanggan = $max;
 
 		$dataPelanggan = array(
-			'nama_plg' => $nama_plg,
-			'alamat_plg' => $alamat_plg,
-			'daerah_plg' => $daerah_plg,
-			'tipe_kendaraan' => $tipe_kendaraan
+			'IDPELANGGAN' => $id_pelanggan,
+			'NAMAPELANGGAN' => $nama_plg,
+			'ALAMATPELANGGAN' => $alamat_plg,
+			'DAERAHPELANGGAN' => $daerah_plg,
+			'NOTELPPELANGGAN' => $no_telpon
 			);
 
+		$r = $this -> m_layanan -> insert('pelanggan', $dataPelanggan);
+		// print_r($dataPelanggan);
 		// Data Kendaraan
 		$no_mesin = $this -> input -> post('no_mesin');
+		$no_kerangka = $this -> input -> post('no_kerangka');
 		$no_pol = $this -> input -> post('no_pol');
 		$tipe_kdr = $this -> input -> post('tipe_kdr');
 		$tahun = $this -> input -> post('tahun');
@@ -43,17 +52,6 @@ class Layanan extends CI_Controller
 		$kon_awal = $this -> input -> post('kon_awal');
 		$kon_bensin = $this -> input -> post('kon_bensin');
 		$cat_lain = $this -> input -> post('cat_lain');
-
-		$dataKendaraan = array(
-			'no_mesin' => $no_mesin,
-			'no_pol' => $no_pol,
-			'tipe_kdr' => $tipe_kdr,
-			'tahun' => $tahun,
-			'km' => $km,
-			'kon_awal' => $kon_awal,
-			'kon_bensin' => $kon_bensin,
-			'cat_lain' => $cat_lain
-			);
 
 		// Data Layanan
 		$tgl_service = $this -> input -> post('tgl_service');
@@ -74,27 +72,38 @@ class Layanan extends CI_Controller
 		$biaya_Total = $this -> input -> post('biaya_Total');
 		$no_urut = $this -> input -> post('no_urut');
 
-		$dataLayanan = array(
-			'tgl_service' => $tgl_service,
-			'nama_peg' => $nama_peg,
-			'keluhan_kon' => $keluhan_kon,
-			'analisa_sa' => $analisa_sa,
-			'tgl_datang' => $tgl_datang,
-			'jam_datang' => $jam_datang,
-			'tgl_mulai' => $tgl_mulai,
-			'jam_mulai' => $jam_mulai,
-			'tgl_selesai' => $tgl_selesai,
-			'jam_selesai' => $jam_selesai,
-			'tgl_cek' => $tgl_cek,
-			'jam_cek' => $jam_cek,
-			'jenis_cek' => $jenis_cek,
-			'biaya_kerja' => $biaya_kerja,
-			'biaya_sc' => $biaya_sc,
-			'biaya_Total' => $biaya_Total,
-			'no_urut' => $no_urut
+		$id_layanan = "Layanan".$max;
+
+		$data = array(
+			'IDLAYANAN' => $id_layanan,
+			'NOMESIN' => $no_mesin,
+			'NOKERANGKA' => $no_kerangka,
+			'NOPOL' => $no_pol,
+			'TIPE' => $tipe_kdr,
+			'TAHUN' => $tahun,
+			'KM' => $km,
+			'KONDISIAWAL' => $kon_awal,
+			'KONDISIBENSIN' => $kon_bensin,
+			'CATATANLAIN' => $cat_lain,
+			
+			//Layanan
+			'TANGGALSERVICE' => $tgl_service,
+			'IDPEG' => $nama_peg,
+			'KELUHANKONSUMEN' => $keluhan_kon,
+			'ANALISASA' => $analisa_sa,
+			'WAKTUDATANG' => $tgl_datang." ".$jam_datang,
+			'WAKTUMULAISERVICE' => $tgl_mulai." ".$jam_mulai,
+			'WAKTUSELESAISERVICE' => $tgl_selesai." ".$jam_selesai,
+			'WAKTUPENGECEKAN' => $tgl_cek." ".$jam_cek,
+			'JENISPENGECEKAN' => $jenis_cek,
+			'BIAYAKERJA' => $biaya_kerja,
+			'BIAYASUKUCADANG' => $biaya_sc,
+			'NOURUT' => $no_urut
 			);
 
-		// $result = $this -> m_gedung -> insertGedung($data);
+		$r = $this -> m_layanan -> insert('layanan', $data);
+		
+		redirect('Layanan');
 	}
 
 }
