@@ -86,7 +86,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-            <li><a href=""><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+            <li><a href="<?php echo base_url('login/logout'); ?>"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
           <!-- User Account: style can be found in dropdown.less -->
         
           <!-- Control Sidebar Toggle Button -->
